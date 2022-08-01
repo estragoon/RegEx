@@ -1,5 +1,0 @@
-# ignore any .log file
-*.log
-
-# ignore any file in any directory named temp
-temp/
