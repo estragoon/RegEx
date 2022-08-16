@@ -1,18 +1,21 @@
 
 def main():
 
-    print(regex('ab', 'aa'))
-    print(regex('aa', 'aa'))
+    regex('aa', 'a')
+    regex('aa', 'a*')
+    regex('ab', '.*')
 
 def regex(input, pattern):
     
-    if input == pattern:
+    buffer = ''
+    
+    for i in range(len(pattern)):
 
-        return True
+        if pattern[i] == '*':
 
-    else:
+            buffer = pattern[:i]
 
-        return False
+            print(buffer)
 
 
 if __name__ == '__main__':
