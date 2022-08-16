@@ -16,3 +16,4 @@ class regex(object):
         else:
         
             return initial and self.valid(input[1:], pattern[1:])
+
