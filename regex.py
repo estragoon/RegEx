@@ -11,47 +11,61 @@ def main():
     print(regex('aab', 'c*a*b'))
 
 def regex(input, pattern):
-    
+
+    buffer = ''
+
+    etoile_index = -1
+
     etoile_buffer = ''
     
+    etoile_input = input
+
+    pattern_buffer = pattern
+
     for i in range(len(pattern)):
 
         # Detect etoile in pattern
         if pattern[i] == '*':
 
             # Put in etoile_buffer the text before the etoile
-            etoile_buffer = pattern[:i]
+            etoile_buffer = pattern[etoile_index + 1 : i]
 
-            # Get maximum number of multiple for etoile_buffer
-            x = ceil(len(input) / len(etoile_buffer))
+            etoile_index = i
 
-            # Match input == i * etoile_buffer
-            for j in range(0, x + 1):
+            # Match input == i * etoile_buffer (for maximum number of multiple for etoile_buffer)
+            for j in range(ceil(len(etoile_input) / len(etoile_buffer))):
 
-                dot_buffer = list(etoile_buffer * j)
+                dot_buffer = list(etoile_buffer)
 
                 # Replace each '.' by corresponding char in input
-                for i in range(len(dot_buffer)):
+                for o in range(len(dot_buffer)):
 
-                    if dot_buffer[i] == '.':
+                    if dot_buffer[o] == '.':
 
                         try:
-                            dot_buffer[i] = input[i]
+                            dot_buffer[o] = etoile_input[o]
                         
                         except IndexError:
                             return False
 
                 dot_buffer = ''.join(dot_buffer)
 
-                # Match for input == dot_buffer
-                if input == dot_buffer:
+                if etoile_input[:len(dot_buffer)] == dot_buffer:
 
-                    return True
+                    buffer += dot_buffer
+                    
+                    etoile_input = etoile_input[len(dot_buffer):]
 
-            return False
+                else:
 
-    # If no etoile, match for input == pattern
-    if input == pattern:
+                    break
+        
+            pattern_buffer = pattern_buffer[len(etoile_buffer) + 1 :]
+                    
+    buffer += pattern_buffer
+
+    # Match for buffer == pattern
+    if buffer == input:
 
         return True
 
