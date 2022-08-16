@@ -3,9 +3,7 @@ from math import ceil
 def main():
 
     print(regex('aa', 'a'))
-
-    print(regex('aaaaa', 'a*'))
-    
+    print(regex('aa', 'a*'))
     print(regex('ab', '.*'))
 
 def regex(input, pattern):
