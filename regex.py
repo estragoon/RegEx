@@ -41,6 +41,7 @@ def regex(input, pattern):
 
                 dot_buffer = ''.join(dot_buffer)
 
+                # Match for input == dot_buffer
                 if input == dot_buffer:
 
                     return True
