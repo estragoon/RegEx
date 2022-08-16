@@ -10,6 +10,8 @@ def main():
 
     print(regex('aab', 'c*a*b'))
 
+    print(regex('mississippi', 'mis*is*ip*.'))
+
 def regex(input, pattern):
 
     buffer = ''
