@@ -8,6 +8,8 @@ def main():
 
     print(regex('abacada', 'a.*'))
 
+    print(regex('aab', 'c*a*b'))
+
 def regex(input, pattern):
     
     etoile_buffer = ''
